@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan de Leçon</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #0056b3;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+        }
+        select, input, textarea {
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        .entry {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .entry button {
+            margin-right: 10px;
+        }
+        button {
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #004494;
+        }
+        .hidden {
+            display: none;
+        }
+        .flex-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .flex-container > div {
+            flex: 1;
+            margin-right: 5px;
+        }
+        .flex-container > div:last-child {
+            margin-right: 0;
+        }
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .checkbox-group label {
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            margin: 2px 0;
+        }
+        .checkbox-group input {
+            margin-right: 5px;
+            width: 16px;
+            height: 16px;
+        }
+        .delete-btn, .edit-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: red;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .delete-btn:hover {
+            background-color: darkred;
+        }
+        .edit-btn {
+            right: 80px;
+            background-color: orange;
+        }
+        .edit-btn:hover {
+            background-color: darkorange;
+        }
+        #confirmation-message {
+            display: none;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            select, input, textarea {
+                max-width: 100%;
+            }
+            .flex-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Plan de Leçon</h1>
+    <div id="confirmation-message">Modification terminée. L'ancien envoi a été remplacé par celui modifié.</div>
+    <label for="enseignante" style="text-align: center;">Choisissez votre nom :</label>
+    <select id="enseignante" style="display: block; margin: 0 auto;" onchange="updateFields()">
+        <option value="">--Sélectionnez--</option>
+        <option value="Abas">Abas</option>
+        <option value="Mohamed">Mohamed</option>
+        <option value="Morchid">Morchid</option>
+        <option value="Tonga">Tonga</option>
+        <option value="Youssef">Youssef</option>
+        <option value="Zain">Zain</option>
+    </select>
+    <div id="options" class="hidden">
+        <div class="flex-container">
+            <div>
+                <label for="date">Date :</label>
+                <input type="date" id="date">
+            </div>
+            <div>
+                <label for="semaine">Semaine :</label>
+                <select id="semaine">
+                    <option value="">--Sélectionnez--</option>
+                    <option value="3">Semaine 3</option>
+                    <option value="4">Semaine 4</option>
+                    <option value="5">Semaine 5</option>
+                    <option value="6">Semaine 6</option>
+                    <option value="7">Semaine 7</option>
+                    <option value="8">Semaine 8</option>
+                    <option value="9">Semaine 9</option>
+                    <option value="10">Semaine 10</option>
+                    <option value="11">Semaine 11</option>
+                    <option value="12">Semaine 12</option>
+                    <option value="13">Semaine 13</option>
+                    <option value="14">Semaine 14</option>
+                    <option value="15">Semaine 15</option>
+                    <option value="16">Semaine 16</option>
+                    <option value="17">Semaine 17</option>
+                    <option value="18">Semaine 18</option>
+                    <option value="19">Semaine 19</option>
+                    <option value="20">Semaine 20</option>
+                    <option value="21">Semaine 21</option>
+                    <option value="22">Semaine 22</option>
+                    <option value="23">Semaine 23</option>
+                    <option value="24">Semaine 24</option>
+                    <option value="25">Semaine 25</option>
+                    <option value="26">Semaine 26</option>
+                    <option value="27">Semaine 27</option>
+                    <option value="28">Semaine 28</option>
+                    <option value="29">Semaine 29</option>
+                    <option value="30">Semaine 30</option>
+                    <option value="31">Semaine 31</option>
+                    <option value="32">Semaine 32</option>
+                    <option value="33">Semaine 33</option>
+                </select>
+            </div>
+            <div>
+                <label for="jour">Choisissez le jour :</label>
+                <select id="jour">
+                    <option value="">--Sélectionnez--</option>
+                    <option value="Dimanche">Dimanche</option>
+                    <option value="Lundi">Lundi</option>
+                    <option value="Mardi">Mardi</option>
+                    <option value="Mercredi">Mercredi</option>
+                    <option value="Jeudi">Jeudi</option>
+                </select>
+            </div>
+        </div>
+        <div class="flex-container">
+            <div>
+                <label for="classe">Choisissez la classe :</label>
+                <select id="classe">
+                    <option value="">--Sélectionnez--</option>
+                    <option value="PEI 1">PEI 1</option>
+                    <option value="PEI 2">PEI 2</option>
+                    <option value="PEI 3">PEI 3</option>
+                    <option value="PEI 4">PEI 4</option>
+                    <option value="DP 1">DP 1</option>
+                    <option value="DP 2">DP 2</option>
+                </select>
+            </div>
+            <div>
+                <label for="matiere">Choisissez la matière :</label>
+                <select id="matiere">
+                    <option value="">--Sélectionnez--</option>
+                    <option value="Maths">Maths</option>
+                    <option value="Design">Design</option>
+                    <option value="Sciences">Sciences</option>
+                    <option value="Physique-Chimie">Physique-Chimie</option>
+                    <option value="Biologie">Biologie</option>
+                    <option value="Anglais">Anglais</option>
+                    <option value="Langue et Littérature">Langue et Littérature</option>
+                    <option value="Individus et Sociétés">Individus et Sociétés</option>
+                    <option value="Philosophie">Philosophie</option>
+                    <option value="SNT">SNT</option>
+                    <option value="S.E.S">S.E.S</option>
+                    <option value="Enseignement scientifique">Enseignement scientifique</option>
+                </select>
+            </div>
+            <div>
+                <label for="seance">Choisissez la séance :</label>
+                <select id="seance">
+                    <option value="">--Sélectionnez--</option>
+                    <option value="1">Séance 1</option>
+                    <option value="2">Séance 2</option>
+                    <option value="3">Séance 3</option>
+                    <option value="4">Séance 4</option>
+                    <option value="5">Séance 5</option>
+                    <option value="6">Séance 6</option>
+                    <option value="7">Séance 7</option>
+                    <option value="8">Séance 8</option>
+                    <option value="9">Séance 9</option>
+                    <option value="10">Séance 10</option>
+                </select>
+            </div>
+        </div>
+        <div class="flex-container">
+            <div>
+                <label for="unite">Titre de l’unité :</label>
+                <textarea id="unite" placeholder="Titre de l’unité"></textarea>
+            </div>
+            <div>
+                <label for="lecon">Leçon :</label>
+                <textarea id="lecon" placeholder="Leçon"></textarea>
+            </div>
+        </div>
+        <h2>Informations à remplir :</h2>
+        <div class="flex-container">
+            <div>
+                <label>Méthodes d’enseignement :</label>
+                <div class="checkbox-group" id="methodes">
+                    <label><input type="checkbox" value="Enseignement direct">Enseignement direct</label>
+                    <label><input type="checkbox" value="Apprentissage par projet">Apprentissage par projet</label>
+                    <label><input type="checkbox" value="Apprentissage coopératif">Apprentissage coopératif</label>
+                    <label><input type="checkbox" value="Enseignement différencié">Enseignement différencié</label>
+                    <label><input type="checkbox" value="Apprentissage par découverte">Apprentissage par découverte</label>
+                    <label><input type="checkbox" value="Méthode de la classe inversée">Méthode de la classe inversée</label>
+                    <label><input type="checkbox" value="Approche par compétences">Approche par compétences</label>
+                    <label><input type="checkbox" value="Enseignement magistral">Enseignement magistral</label>
+                    <label><input type="checkbox" value="Apprentissage expérientiel">Apprentissage expérientiel</label>
+                    <label><input type="checkbox" value="Apprentissage autonome">Apprentissage autonome</label>
+                    <label><input type="checkbox" value="Apprentissage par le jeu">Apprentissage par le jeu</label>
+                    <label><input type="checkbox" value="Enseignement basé sur les problèmes">Enseignement basé sur les problèmes</label>
+                    <label><input type="checkbox" value="Méthode des cas">Méthode des cas</label>
+                    <label><input type="checkbox" value="Approche constructiviste">Approche constructiviste</label>
+                    <label><input type="checkbox" value="Apprentissage en ligne">Apprentissage en ligne</label>
+                    <label><input type="checkbox" value="Enseignement collaboratif">Enseignement collaboratif</label>
+                    <label><input type="checkbox" value="Apprentissage par simulation">Apprentissage par simulation</label>
+                    <label><input type="checkbox" value="Méthode des exposés">Méthode des exposés</label>
+                    <label><input type="checkbox" value="Enseignement par tutorat">Enseignement par tutorat</label>
+                    <label><input type="checkbox" value="Apprentissage par pairs">Apprentissage par pairs</label>
+                    <label><input type="checkbox" value="Pratique réflexive">Pratique réflexive</label>
+                    <label><input type="checkbox" value="Évaluation formative">Évaluation formative</label>
+                    <label><input type="checkbox" value="Enseignement ludique">Enseignement ludique</label>
+                    <label><input type="checkbox" value="Apprentissage interdisciplinaire">Apprentissage interdisciplinaire</label>
+                    <label><input type="checkbox" value="Méthode des projets communautaires">Méthode des projets communautaires</label>
+                    <label><input type="checkbox" value="Enseignement basé sur des compétences">Enseignement basé sur des compétences</label>
+                </div>
+            </div>
+            <div>
+                <label>Outils de travail :</label>
+                <div class="checkbox-group" id="outils">
+                    <label><input type="checkbox" value="Tableau blanc interactif">Tableau blanc interactif</label>
+                    <label><input type="checkbox" value="Projecteur">Projecteur</label>
+                    <label><input type="checkbox" value="Ordinateurs portables">Ordinateurs portables</label>
+                    <label><input type="checkbox" value="Tablettes">Tablettes</label>
+                    <label><input type="checkbox" value="Ressources audiovisuelles">Ressources audiovisuelles</label>
+                    <label><input type="checkbox" value="Logiciels éducatifs">Logiciels éducatifs</label>
+                    <label><input type="checkbox" value="Outils de collaboration en ligne">Outils de collaboration en ligne</label>
+                    <label><input type="checkbox" value="Manuels scolaires">Manuels scolaires</label>
+                    <label><input type="checkbox" value="Fiches de travail">Fiches de travail</label>
+                    <label><input type="checkbox" value="Matériel de manipulation">Matériel de manipulation</label>
+                    <label><input type="checkbox" value="Cartes mentales">Cartes mentales</label>
+                    <label><input type="checkbox" value="Applications éducatives">Applications éducatives</label>
+                    <label><input type="checkbox" value="Jeux éducatifs">Jeux éducatifs</label>
+                    <label><input type="checkbox" value="Post-it">Post-it</label>
+                    <label><input type="checkbox" value="Supports visuels">Supports visuels</label>
+                    <label><input type="checkbox" value="Documents partagés">Documents partagés</label>
+                    <label><input type="checkbox" value="Plateformes d'apprentissage en ligne">Plateformes d'apprentissage en ligne</label>
+                    <label><input type="checkbox" value="Applications de gestion de classe">Applications de gestion de classe</label>
+                    <label><input type="checkbox" value="Outils d'évaluation en ligne">Outils d'évaluation en ligne</label>
+                    <label><input type="checkbox" value="Livres numériques">Livres numériques</label>
+                    <label><input type="checkbox" value="Enregistreurs audio">Enregistreurs audio</label>
+                </div>
+            </div>
+        </div>
+        
+        <div class="flex-container">
+            <div>
+                <label for="objectifs">Objectifs :</label>
+                <textarea id="objectifs" placeholder="Objectifs (Connaissances, Compréhension, Compétences)"></textarea>
+            </div>
+            <div>
+                <label for="minutage">Minutage :</label>
+                <textarea id="minutage" placeholder="Minutage (min)"></textarea>
+            </div>
+        </div>
+        <div class="flex-container">
+            <div>
+                <label for="contenu">Contenu :</label>
+                <textarea id="contenu" placeholder="Contenu"></textarea>
+            </div>
+            <div>
+                <label for="ressources">Ressources :</label>
+                <textarea id="ressources" placeholder="Ressources"></textarea>
+            </div>
+        </div>
+
+        <label for="devoirs">Devoirs/devoir/quiz/projet, etc. :</label>
+        <textarea id="devoirs" placeholder="Devoirs/devoir/quiz/projet, etc."></textarea>
+        
+        <div class="flex-container">
+            <div>
+                <label>Différenciation : Pour les apprenants lents :</label>
+                <div class="checkbox-group" id="diff_lents">
+                    <label><input type="checkbox" value="Visualisation">Visualisation</label>
+                    <label><input type="checkbox" value="Jeux éducatifs">Jeux éducatifs</label>
+                    <label><input type="checkbox" value="Paires d'apprentissage">Paires d'apprentissage</label>
+                    <label><input type="checkbox" value="Répétition et pratique">Répétition et pratique</label>
+                    <label><input type="checkbox" value="Supports multisensoriels">Supports multisensoriels</label>
+                </div>
+            </div>
+            <div>
+                <label>Différenciation : Très performants :</label>
+                <div class="checkbox-group" id="diff_performants">
+                    <label><input type="checkbox" value="Défis supplémentaires">Défis supplémentaires</label>
+                    <label><input type="checkbox" value="Séries de lectures avancées">Séries de lectures avancées</label>
+                    <label><input type="checkbox" value="Ateliers spécialisés">Ateliers spécialisés</label>
+                    <label><input type="checkbox" value="Encourager l'innovation">Encourager l'innovation</label>
+                    <label><input type="checkbox" value="Compétitions académiques">Compétitions académiques</label>
+                </div>
+            </div>
+            <div>
+                <label>Différenciation : Pour tous :</label>
+                <div class="checkbox-group" id="diff_tous">
+                    <label><input type="checkbox" value="Rotation des stations">Rotation des stations</label>
+                    <label><input type="checkbox" value="Utilisation de portfolios">Utilisation de portfolios</label>
+                    <label><input type="checkbox" value="Discussions en classe">Discussions en classe</label>
+                    <label><input type="checkbox" value="Stratégies d'auto-évaluation">Stratégies d'auto-évaluation</label>
+                    <label><input type="checkbox" value="Évaluations formatives">Évaluations formatives</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex-container">
+            <button onclick="saveEntry()">Envoyer</button>
+            <button onclick="generateExcel()">Générer Excel</button>
+            <input type="file" id="upload" accept=".xlsx, .xls" onchange="handleFile(event)">
+            <button onclick="deleteAllEntries()">Supprimer toutes les entrées</button>
+        </div>
+    </div>
+    
+    <div id="entriesContainer"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <script>
+        let entries = [];
+        let editIndex = -1;
+
+        window.addEventListener('beforeunload', function () {
+            localStorage.setItem('entries', JSON.stringify(entries));
+            generateExcel();
+        });
+
+        window.addEventListener('load', function () {
+            const storedEntries = JSON.parse(localStorage.getItem('entries'));
+            if (storedEntries) {
+                entries = storedEntries;
+                displayEntries();
+            }
+        });
+
+        function updateFields() {
+            const enseignanteSelect = document.getElementById('enseignante');
+            const optionsDiv = document.getElementById('options');
+            optionsDiv.classList.toggle('hidden', !enseignanteSelect.value);
+        }
+
+        function saveEntry() {
+            const enseignant = document.getElementById('enseignante').value;
+            const date = document.getElementById('date').value;
+            const semaine = document.getElementById('semaine').value;
+            const matiere = document.getElementById('matiere').value;
+            const classe = document.getElementById('classe').value;
+            const seance = document.getElementById('seance').value;
+            const jour = document.getElementById('jour').value;
+            const unite = document.getElementById('unite').value;
+            const lecon = document.getElementById('lecon').value;
+            const methodes = Array.from(document.querySelectorAll('#methodes input:checked')).map(input => input.value).join(", ");
+            const outils = Array.from(document.querySelectorAll('#outils input:checked')).map(input => input.value).join(", ");
+            const objectifs = document.getElementById('objectifs').value;
+            const minutage = document.getElementById('minutage').value;
+            const contenu = document.getElementById('contenu').value;
+            const ressources = document.getElementById('ressources').value;
+            const devoirs = document.getElementById('devoirs').value;
+            const diff_lents = Array.from(document.querySelectorAll('#diff_lents input:checked')).map(input => input.value).join(", ");
+            const diff_performants = Array.from(document.querySelectorAll('#diff_performants input:checked')).map(input => input.value).join(", ");
+            const diff_tous = Array.from(document.querySelectorAll('#diff_tous input:checked')).map(input => input.value).join(", ");
+
+            const entry = {
+                enseignant,
+                date,
+                semaine,
+                matiere,
+                classe,
+                seance,
+                jour,
+                unite,
+                lecon,
+                methodes,
+                outils,
+                objectifs,
+                minutage,
+                contenu,
+                ressources,
+                devoirs,
+                diff_lents,
+                diff_performants,
+                diff_tous
+            };
+
+            if (editIndex >= 0) {
+                entries[editIndex] = entry;
+                editIndex = -1;
+                showConfirmationMessage('Modification terminée. L\'ancien envoi a été remplacé par celui modifié.');
+            } else {
+                entries.push(entry);
+                showConfirmationMessage('Entrée ajoutée avec succès.');
+            }
+
+            localStorage.setItem('entries', JSON.stringify(entries));
+            displayEntries();
+            clearForm();
+            scrollToTop();
+        }
+
+        function displayEntries() {
+            const entriesContainer = document.getElementById('entriesContainer');
+            entriesContainer.innerHTML = '';
+            entries.forEach((entry, index) => {
+                const entryDiv = document.createElement('div');
+                entryDiv.className = 'entry';
+                entryDiv.innerHTML = `
+                    <h3>${entry.matiere} - Séance ${entry.seance}</h3>
+                    <p><strong>Enseignant :</strong> ${entry.enseignant}</p>
+                    <p><strong>Date :</strong> ${entry.date}</p>
+                    <p><strong>Semaine :</strong> ${entry.semaine}</p>
+                    <p><strong>Matière :</strong> ${entry.matiere}</p>
+                    <p><strong>Classe :</strong> ${entry.classe}</p>
+                    <p><strong>Séance :</strong> ${entry.seance}</p>
+                    <p><strong>Jour :</strong> ${entry.jour}</p>
+                    <div><strong>Titre de l’unité :</strong> ${entry.unite}</div>
+                    <div><strong>Leçon :</strong> ${entry.lecon}</div>
+                    <p><strong>Méthodes d’enseignement :</strong> ${entry.methodes || 'Aucune'}</p>
+                    <p><strong>Outils de travail :</strong> ${entry.outils || 'Aucun'}</p>
+                    <div><strong>Objectifs :</strong> ${entry.objectifs}</div>
+                    <div><strong>Minutage :</strong> ${entry.minutage}</div>
+                    <div><strong>Contenu :</strong> ${entry.contenu}</div>
+                    <div><strong>Ressources :</strong> ${entry.ressources}</div>
+                    <div><strong>Devoirs :</strong> ${entry.devoirs}</div>
+                    <div><strong>Différenciation - Lents :</strong> ${entry.diff_lents}</div>
+                    <div><strong>Différenciation - Performants :</strong> ${entry.diff_performants}</div>
+                    <div><strong>Différenciation - Tous :</strong> ${entry.diff_tous}</div>
+                    <button class="edit-btn" onclick="editEntry(${index})">Éditer</button>
+                    <button class="delete-btn" onclick="deleteEntry(${index})">Supprimer</button>
+                `;
+                entriesContainer.appendChild(entryDiv);
+            });
+        }
+
+        function clearForm() {
+            document.getElementById('enseignante').value = '';
+            document.getElementById('date').value = '';
+            document.getElementById('semaine').value = '';
+            document.getElementById('matiere').value = '';
+            document.getElementById('classe').value = '';
+            document.getElementById('seance').value = '';
+            document.getElementById('jour').value = '';
+            document.getElementById('unite').value = '';
+            document.getElementById('lecon').value = '';
+            document.getElementById('objectifs').value = '';
+            document.getElementById('minutage').value = '';
+            document.getElementById('contenu').value = '';
+            document.getElementById('ressources').value = '';
+            document.getElementById('devoirs').value = '';
+            document.querySelectorAll('#methodes input, #outils input, #diff_lents input, #diff_performants input, #diff_tous input').forEach(input => input.checked = false);
+        }
+
+        function generateExcel() {
+            const enseignant = document.getElementById('enseignante').value;
+            const semaine = document.getElementById('semaine').value;
+            const filename = `Plan de leçon - ${enseignant} - Semaine ${semaine}.xlsx`;
+            const data = [
+                [
+                    'Enseignant', 'Date', 'Semaine', 'Matière', 'Classe', 
+                    'Séance', 'Jour', 'Titre de l’unité', 'Leçon', 
+                    'Méthodes d’enseignement', 'Outils de travail', 
+                    'Objectifs', 'Minutage', 'Contenu', 'Ressources', 
+                    'Devoirs', 'Différenciation - Lents', 
+                    'Différenciation - Performants', 'Différenciation - Tous'
+                ],
+                ...entries.map(entry => [
+                    entry.enseignant, entry.date, entry.semaine, 
+                    entry.matiere, entry.classe, entry.seance, 
+                    entry.jour, entry.unite, entry.lecon, 
+                    entry.methodes, entry.outils, 
+                    entry.objectifs, entry.minutage, entry.contenu, entry.ressources, 
+                    entry.devoirs, entry.diff_lents, 
+                    entry.diff_performants, entry.diff_tous
+                ])
+            ];
+            const ws = XLSX.utils.aoa_to_sheet(data);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, 'Entrées');
+            XLSX.writeFile(wb, filename);
+        }
+
+        function handleFile(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const data = new Uint8Array(e.target.result);
+                const workbook = XLSX.read(data, { type: 'array' });
+                const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+                const jsonData = XLSX.utils.sheet_to_json(firstSheet, { header: 1 });
+                // Import all sessions from the Excel file
+                importFromExcel(jsonData);
+            };
+            reader.readAsArrayBuffer(file);
+        }
+
+        function importFromExcel(data) {
+            const headers = data[0];
+            const map = {
+                'Enseignant': 'enseignant',
+                'Date': 'date',
+                'Semaine': 'semaine',
+                'Matière': 'matiere',
+                'Classe': 'classe',
+                'Séance': 'seance',
+                'Jour': 'jour',
+                'Titre de l’unité': 'unite',
+                'Leçon': 'lecon',
+                'Méthodes d’enseignement': 'methodes',
+                'Outils de travail': 'outils',
+                'Objectifs': 'objectifs',
+                'Minutage': 'minutage',
+                'Contenu': 'contenu',
+                'Ressources': 'ressources',
+                'Devoirs': 'devoirs',
+                'Différenciation - Lents': 'diff_lents',
+                'Différenciation - Performants': 'diff_performants',
+                'Différenciation - Tous': 'diff_tous'
+            };
+            const newEntries = data.slice(1).map(row => {
+                const entry = {};
+                headers.forEach((header, index) => {
+                    const key = map[header];
+                    if (key) {
+                        entry[key] = row[index];
+                    }
+                });
+                return entry;
+            });
+            entries = [...entries, ...newEntries];
+            localStorage.setItem('entries', JSON.stringify(entries));
+            displayEntries();
+        }
+
+        function deleteEntry(index) {
+            entries.splice(index, 1);
+            localStorage.setItem('entries', JSON.stringify(entries));
+            displayEntries();
+        }
+
+        function deleteAllEntries() {
+            entries.length = 0;
+            localStorage.removeItem('entries');
+            displayEntries();
+        }
+
+        function editEntry(index) {
+            const entry = entries[index];
+            document.getElementById('enseignante').value = entry.enseignant;
+            document.getElementById('date').value = entry.date;
+            document.getElementById('semaine').value = entry.semaine;
+            document.getElementById('matiere').value = entry.matiere;
+            document.getElementById('classe').value = entry.classe;
+            document.getElementById('seance').value = entry.seance;
+            document.getElementById('jour').value = entry.jour;
+            document.getElementById('unite').value = entry.unite;
+            document.getElementById('lecon').value = entry.lecon;
+            document.getElementById('objectifs').value = entry.objectifs;
+            document.getElementById('minutage').value = entry.minutage;
+            document.getElementById('contenu').value = entry.contenu;
+            document.getElementById('ressources').value = entry.ressources;
+            document.getElementById('devoirs').value = entry.devoirs;
+
+            // Reset checkboxes
+            document.querySelectorAll('#methodes input, #outils input, #diff_lents input, #diff_performants input, #diff_tous input').forEach(input => {
+                input.checked = false;
+            });
+
+            // Check the appropriate checkboxes
+            entry.methodes.split(", ").forEach(value => {
+                document.querySelector(`#methodes input[value="${value}"]`).checked = true;
+            });
+            entry.outils.split(", ").forEach(value => {
+                document.querySelector(`#outils input[value="${value}"]`).checked = true;
+            });
+            entry.diff_lents.split(", ").forEach(value => {
+                document.querySelector(`#diff_lents input[value="${value}"]`).checked = true;
+            });
+            entry.diff_performants.split(", ").forEach(value => {
+                document.querySelector(`#diff_performants input[value="${value}"]`).checked = true;
+            });
+            entry.diff_tous.split(", ").forEach(value => {
+                document.querySelector(`#diff_tous input[value="${value}"]`).checked = true;
+            });
+
+            editIndex = index;
+
+            scrollToTop();
+        }
+
+        function showConfirmationMessage(message) {
+            const confirmationMessage = document.getElementById('confirmation-message');
+            confirmationMessage.textContent = message;
+            confirmationMessage.style.display = 'block';
+            setTimeout(() => {
+                confirmationMessage.style.display = 'none';
+            }, 3000);
+        }
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</body>
+</html>
+
